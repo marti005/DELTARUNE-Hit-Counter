@@ -7,7 +7,7 @@ using UndertaleModLib.Util;
 SyncBinding("Strings, Variables, Functions", true);
 UndertaleModLib.Compiler.CodeImportGroup importGroup = new(Data);
 
-class BingoLoader : UMPLoader
+class ModLoader : UMPLoader
 {
     public override string CodePath => "code/";
 
@@ -37,7 +37,7 @@ class BingoLoader : UMPLoader
         return entries.ToArray();
     }
 
-    public BingoLoader(UMPWrapper wrapper, int chapter) : base(wrapper)
+    public ModLoader(UMPWrapper wrapper, int chapter) : base(wrapper)
     {
         chnum = chapter;
     }
@@ -47,16 +47,13 @@ class BingoLoader : UMPLoader
 
 void BuildMod(int chapter)
 {
-    BingoLoader loader = new BingoLoader(UMP_WRAPPER, chapter);
+    ModLoader loader = new ModLoader(UMP_WRAPPER, chapter);
     string scriptPath = Path.GetDirectoryName(ScriptPath);
-
-    if(chapter > 0)
-        RunUMTScript(Path.Combine(scriptPath, "sprites/ImportGraphics.csx"));
     
     // Import fnt_main from Chapter 1 into other chapters because for some reason the text acts really strange otherwise.
     // For example, the m/M and w/W letters on the board are shifted down-right IF you enter from Chapter Select and you're not on fullscreen.
-    if(chapter > 1)
-        RunUMTScript(Path.Combine(scriptPath, "fnt_main_ch1/ImportFonts.csx"));
+    //if(chapter > 1)
+        //RunUMTScript(Path.Combine(scriptPath, "fnt_main_ch1/ImportFonts.csx"));
     
     loader.Load();
 
@@ -71,5 +68,5 @@ void BuildMod(int chapter)
     importGroup.Import();
     DisableAllSyncBindings();
 
-    ScriptMessage(chapter == 0 ? "Bingosync Mod for DELTARUNE Chapter Select was imported!" : $"Bingosync Mod for DELTARUNE Chapter {chapter} was imported!");
+    ScriptMessage(chapter == 0 ? "Hit Counter Mod for DELTARUNE Chapter Select was imported!" : $"Hit Counter Mod for DELTARUNE Chapter {chapter} was imported!");
 }
