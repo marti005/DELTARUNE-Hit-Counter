@@ -18,7 +18,7 @@ if (singletarget)
 obj_tenna_enemy.minigamefailcount++;
 /// CODE
 global.hits--;
-scr_save_bingo_data();
+scr_save_hits();
 /// END
 
 #elsif CHAPTER_4
@@ -28,13 +28,13 @@ scr_damage_cache();
 if (instance_exists(obj_ch4_DCA01) && global.interact == 0)
 {
     global.hits--;
-    scr_save_bingo_data();
+    scr_save_hits();
 }
 
 if (instance_exists(obj_dw_churchc_darkswords) && (obj_dw_churchc_darkswords.con < 2 || global.forcedswords))
 {
     global.hits--;
-    scr_save_bingo_data();
+    scr_save_hits();
 }
 /// END
 #endif
