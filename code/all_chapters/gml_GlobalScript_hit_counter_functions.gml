@@ -2,7 +2,7 @@
 
 function scr_get_mod_version()
 {
-    return "1.00";
+    return "1.01";
 }
 
 function scr_setup_hit_counter()
