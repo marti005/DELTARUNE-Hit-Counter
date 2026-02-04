@@ -108,6 +108,9 @@ function scr_add_hit()
         scr_save_hits();
     }
     else if (!global.knight_swords_hit)
+#elsif CHAPTER_4
+    if (global.forcedswords)
+        exit;
 #endif
 
     // The idea here is when you get hit, wait a frame to see the difference in hits
